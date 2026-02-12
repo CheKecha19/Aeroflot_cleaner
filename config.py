@@ -3,6 +3,10 @@ import os
 import logging
 from pathlib import Path
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+
+# Загружаем переменные окружения из .env файла
+load_dotenv()
 
 # Базовые пути
 BASE_DIR = Path(__file__).parent
@@ -83,3 +87,20 @@ def setup_logging():
 
 # Инициализируем логирование при импорте конфига
 setup_logging()
+
+# ========== НАСТРОЙКИ API КОНТУР.ДИАДОК ==========
+USE_DIADOC_API = False
+DIADOC_API_BASE_URL = os.getenv("DIADOC_API_BASE_URL", "https://diadoc-api.kontur.ru")
+DIADOC_API_KEY = os.getenv("DIADOC_API_KEY", "")
+DIADOC_BOX_ID = os.getenv("DIADOC_BOX_ID", "")
+DIADOC_PAGE_SIZE = 50
+DIADOC_API_TIMEOUT = 60
+DIADOC_RETRY_ATTEMPTS = 3
+
+# ========== НАСТРОЙКИ API СФЕРА КУРЬЕР ==========
+USE_SFERA_API = False
+SFERA_API_BASE_URL = os.getenv("SFERA_API_BASE_URL", "https://api.sfera-docs.ru")
+SFERA_USERNAME = os.getenv("SFERA_USERNAME", "")
+SFERA_PASSWORD = os.getenv("SFERA_PASSWORD", "")
+SFERA_API_TIMEOUT = 60
+SFERA_RETRY_ATTEMPTS = 3
